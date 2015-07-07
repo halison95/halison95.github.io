@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+		<link rel="stylesheet" href="index/index.css">
+		<title>个人日志</title>
+		<script>
+			<script type="text/javascript">
+			var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+			var browser = navigator.userAgent.toLowerCase();
+			var isMobile = false;
+			for (var i=0;i<mobileAgent.length;i++) {
+				if (browser.indexOf(mobileAgent[i])!=-1) {
+					isMobile = true;
+					alert(mobileAgent[i]);
+					location.href ='www.baidu.com';
+					break;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="navi">
+			<a href="index.html" class="logoBox"></a>
+			<a href="intro.html" class="naviHref noUnderlineCCC">自我介绍</a>
+			<a href="hw.html" class="naviHref noUnderlineCCC">前端展示</a>
+			<a href="blog.html" class="naviHref noUnderlineCCC">个人日志</a>
+		</div>
+		<div class="content">
+			<div class="articlePreviewList">
+				<div class="articlePreviewBlock">
+					<div class="date100x100">
+						<p class="month">七月</p>
+						<p class="day">7</p>
+						<p class="year">2015</p>
+					</div>
+					<div class="articlePreviewContent">
+						<div class="articlePreviewHeadline">
+							<h3>第一次日志</h3>
+						</div>
+						<div class="articlePreviewText">
+							<p>在这次课之前，我对前端的理解为：美工们用PS等工具画画画，然后程序员照着设计图把文字图片放在给定的位置</p>
+							<p>所以经过一次实战，我发现：美工的工作真的很重要！没有艺术细菌，企图设计一个漂亮的网页是一件很不容易的事情。在很多细节上，比如边栏的配色，正文字体大小和图片嵌入方式等等都需要很深的考量。如果考虑不够，就可能出现下面这个失败。。。</p>
+							<img class = "imgMaxWidth500" src="image/old.png" alt="old.png">
+							<p>不过，在CSS入门阶段，多重继承引起的样式定位困难也是一个重要的问题。此外还有很多语法上的“坑”。与C++、java等语法学习不同，我们很难知道一个代码在系统中最终执行的方式，因此与学习一个闭源的库相似。而且，尽管C++编译器多种多样，但总体上语法一致，不一样的部分极少用到。而HTML/CSS浏览器种类繁多，语法标准发展迅速，跨平台成为很重要的问题。</p>
+							<p>本门课程的学习，个人以为“排雷”很重要。虽然网上有详尽的语法手册，也有一些问题的通用解决方案，但实际遇到的一些问题（有些甚至难以找到解释，或者与特定浏览器相关）解决起来仍然费时费力。我们不可能记住每一个标签，但对通用解决策略有一定了解后，遇到BUG时能有方向性地从网上查询资料，节约时间。</p>
+						</div>
+					</div>
+					<br style="clear:both"></br>
+				</div>
+				<div class="articlePreviewBlock">
+					<div class="date100x100">
+						<p class="month">七月</p>
+						<p class="day">7</p>
+						<p class="year">2015</p>
+					</div>
+					<div class="articlePreviewContent">
+						<div class="articlePreviewHeadline">
+							<h3>第一次日志补</h3>
+						</div>
+						<div class="articlePreviewText">
+							<p>测试用例：</p>
+							<p>打东边来了个喇嘛，</p>
+							<p>手里拎着个挞嘛，</p>
+							<p>打西边来了个哑巴，</p>
+							<p>腰里别着个喇叭，</p>
+							<p>别着喇叭的要用喇叭换手里拎着挞嘛的哑巴的挞嘛，</p>
+							<p>拎着挞嘛的哑巴不愿意用挞嘛换手里拎着喇叭的喇嘛的喇叭。</p>
+							<p>拎着喇叭的喇嘛用喇叭打了拎着挞嘛的哑巴，</p>
+							<p>拎着挞嘛的哑巴也用挞嘛打了拎着喇叭的喇嘛。</p>
+						</div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+				<br style="clear:both"></br>
+			</div>
+			<div id="newArticleList" class="rightSideBar">
+				<input></input>
+				<br></br>
+				<button>搜索（实现中）</button>
+				<br>
+				<h4>新的文章：</h4>
+				<hr>
+				<ul id="newArticle">
+					<li><a href="404">第一次日志</a></li>
+					<li><a href="404">第一次日志补</a></li>
+				</ul>
+			</div>
+			<br style="clear:both"></br>
+		</div>
+		
+	</body>
+</html>

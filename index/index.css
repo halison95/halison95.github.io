@@ -1,0 +1,263 @@
+*{
+	font-family: "微软雅黑";
+}
+
+body{
+	background: #ffffff;
+	background-color: #ffffff;
+	background-image: -moz-linear-gradient(top, #d5e9ff, #ffffff);
+	background-image: -ms-linear-gradient(top, #d5e9ff, #ffffff);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d5e9ff), to(#ffffff));
+	background-image: -webkit-linear-gradient(top, #d5e9ff, #ffffff);
+	background-image: -o-linear-gradient(top, #d5e9ff, #ffffff);
+	background-image: linear-gradient(top, #d5e9ff, #ffffff);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ecf5ff', endColorstr='#f0f6ff', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	margin: auto;
+	height: 550px;
+	padding: 0;
+	text-align: center;
+	min-width: 700px;
+}
+
+div#navi{
+	top: 0;
+	height: 50px;
+	background: #44aacc;
+	min-width: 700px;
+}
+
+div#mainDiv{
+	margin: auto;
+	width:402px;
+	text-align: center;
+}
+
+div#welcomeText{
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+h1{
+	font-family: "Courier New";
+}
+
+h1#h1Shadow{
+	text-shadow: 20px 20px 2px #aaa;
+}
+
+div#indexImage{
+	margin: 0 auto;
+	height: 300px;
+	width: 300px;
+	-moz-box-shadow: 10px 10px 5px #888888; /* 老的 Firefox */
+	box-shadow: 10px 10px 5px #888888;
+	-webkit-transform:rotate(-15deg);
+    -moz-transform:rotate(-15deg);
+    -ms-transform:rotate(-15deg);
+    -o-transform:rotate(-15deg);
+    transform:rotate(-15deg)
+}
+
+
+a.noUnderlineCCC{
+	text-decoration:none;
+	color: #ccc;
+}
+
+a.logoBox{
+	display: block;
+	width:200px;
+	height:50px;
+	float: left;
+	margin: 0px 30px 5px;
+	background:  url(../image/logo.png) no-repeat transparent;
+}
+
+a.naviHref{
+	height: 40px;
+	float: right;
+	margin: 0px 30px 0px;
+	padding-top: 10px;
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+
+a:hover{
+	color: #000;
+	background-color: #fff;
+}
+
+div.content{
+	margin: 50px 50px 50px;
+	border: 1px solid #aaa;
+	box-shadow: 10px 10px 5px #888888;
+	background-color: #fff; 
+	min-width: 600px;
+}
+
+div#myPhoto{
+	float:left;
+	padding: 20px 20px 20px;
+}
+
+div#myIntro{
+	float:left;
+	padding: 30px 50px 50px;
+	text-align: left;
+}
+
+ul.styleNone{
+	list-style: none;
+	display: block;
+}
+
+ul.styleNone li{
+	margin: 5px 20px 15px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}
+
+div#introText{
+	margin-left: 80px;
+	padding-right: 20px;
+	max-width: 600px;
+}
+
+div.rightSideBar{
+	float: right;
+	width: 180px;
+	margin-right: 20px;
+	padding-top: 50px;
+}
+
+div.articlePreviewList{
+	float: left;
+	max-width: 900px;
+	min-width: 550px;
+	margin: 30px 20px 50px;
+}
+
+div.date100x100{
+	height: 95px;
+	width: 100px;
+	float: left;
+	background-color: #aedf1c;
+	color:#fff;
+	text-align: center;
+	padding-top: 5px;
+}
+
+p.month{
+	margin: auto;
+	font-size: 14px;
+}
+
+p.day{
+	margin: 0 auto;
+	font-size: 40px;
+}
+p.year{
+	margin: 0 auto;
+	font-size: 14px;
+}
+
+div.articlePreviewContent{
+	float: left;
+	text-align: left;
+	max-width: 669px;
+	margin-left: 30px;
+	border-bottom: 1px solid #aaa;
+	padding-right: 10px;
+	min-width: 500px;
+}
+
+div.articlePreviewHeadline{
+	border-bottom: 1px solid #ddd;
+}
+
+#newArticle li{
+	text-align: left;
+}
+
+div.articlePreviewBlock{
+	margin-top: 10px;
+}
+
+img.imgMaxWidth500{
+	max-width: 500px;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+}
+
+a.noUnderline{text-decoration: none;display: block;}
+
+div#hwList{
+	min-height: 600px;
+}
+
+div#hwList, div#hwList ul, div#hwList h1{
+	padding: 20px 50px 20px;
+	text-align: left;
+	font-family: "微软雅黑";
+}
+
+div#hwList ul li{
+	margin-bottom: 10px;
+}
+
+div#hwList ul li a{
+	text-align: center;
+	font-size: 20px;
+	padding: 4px;
+	background: #ccc;
+	width : 300px;
+	margin: 5px  0px  5px;
+	border: 1px  solid  #aaa;
+	color: #000;
+}
+
+div#hwList ul li a:hover{
+	background: #853;
+	color: #fff;
+}
+
+div#hwContent{
+	min-width: 400px;
+}
+
+/*
+ul{
+	margin-top: 70px;
+	margin-left: -25px;
+	display: block;
+	list-style: none;
+	font-size: 30px;
+	font-family: "微软雅黑";
+}
+
+li{
+	margin-bottom: 20px;
+}
+/*
+li:hover{
+	background: #dddddd
+}
+*/
+/*
+#intro :hover{
+	background: #000;
+	color: #fff;
+}
+
+#hw :hover{
+	background: #000;
+	color: #fff;
+}
+
+#blog :hover{
+	background: #000;
+	color: #fff;
+}*/

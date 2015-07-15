@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -14,15 +15,13 @@
 		var commitPage = 1;
 		var commitState = -1;
 		function seeCommitLast(){
+			commitState = 0;
 			if(commitPage == 1){
 				$('#commitBtnLast').html("评论最前端");
-				commitPage = 2;
-				commitState = 0;
 				return;
 			}
-			commitState = 0;
-			$('#commitBtnLast').html("获取评论中");
 			commitPage--;
+			$('#commitBtnLast').html("获取评论中");
 			$.ajax({url:"commit" + commitPage + ".json",async:true,success: function(data){
 				var toLoad = JSON.parse(data);
 					$('#commit_text').html("");
@@ -42,12 +41,13 @@
 				commitState = 0;
 			}
 			$('#commitBtn').html("获取评论中");
+			commitPage++;
 			$.ajax({url:"commit" + commitPage + ".json",async:true,success: function(data){
 				var toLoad = JSON.parse(data);
 				if(toLoad.commit.length == 0){
 					commitState = 1;
 					$('#commitBtn').html("没有更多评论");
-					commitPage--;
+					commitState--;
 				}
 				else{
 					$('#commit_text').html("");
@@ -88,7 +88,7 @@
 
 		function showCommit(d){
 			Modal_isOn = 1;
-			commitPage = 1;
+			commitPage = 0;
 			commitState = -1;
 			picLoading = 1;
 			$($('#commitPicture')[0]).attr("src",$(d).children("img").attr("src").substring(3));
@@ -295,10 +295,7 @@
 			<div id="foot" class="footDiv">
 				<p id="footText" class="footP" >加载中......</p>
 				<br></br>
-				<br></br>
-				<br></br>
 			</div>
-		
 		</div>
 	</body>
 	

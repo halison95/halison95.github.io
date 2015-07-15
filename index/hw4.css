@@ -1,0 +1,45 @@
+div.card{
+	display:block;margin:5px;width:240px;position:absolute;background:#fff;border:1px solid #aaa;height:auto;border-radius:10px;overflow: hidden;
+}
+.card:hover{
+	box-shadow:0px 3px 10px #000;
+}
+.innerImg{
+	height:auto;width: 245px;margin: 0px 0px 0px;overflow: hidden;
+}
+.seeCommitBtn{
+	width:200px;height:60px;border-radius:10px;background:#f0f0f0;font-size:15px;margin: 10px;
+}
+.seeCommitBtn:hover{
+	box-shadow:0px 3px 10px #000;
+}
+.commitText{
+	font-family:'微软雅黑';
+}
+.commitUserName{
+	color:#4ac;
+}
+.commitTextRight{
+	float:right;font-size:9px;	color:#999;
+}
+.commitHeadText{
+	font-size: 10px;color:#999;
+}
+.commitMainDiv{
+	text-align:center;padding:20px;box-shadow:1px 1px 8px #aaa;border:1px solid #000; width:auto;display:inline-block;z-index:999998;overflow-y: auto;max-height: 90%;min-width:40%;background:rgb(245,245,245);max-width: 80%;
+}
+.hw4body{
+	width:100%;min-width:300px;max-width:1300px;text-align:center;
+}
+#Modal_divs_bg{
+	background:rgba(255,255,255,0.7);height:100%;width:100%;position:fixed;top:0;z-Index:999997;display:none;text-align:center
+}
+.footDiv{
+	text-align:center;position:absolute;width:100%;
+}
+.footP{
+	margin:auto;color:#bbb;font-size:25px;
+}
+.hw4Content{
+	margin:auto;max-width:1040px;position:relative;text-align:center;
+}

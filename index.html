@@ -1,49 +1,286 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+		<script src="index/jquery.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="index/index.css">
-		<title>梁凇菘的个人主页</title>
-		<script>
-			var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
-			var browser = navigator.userAgent.toLowerCase();
-			var isMobile = false;
-			for (var i=0;i<mobileAgent.length;i++) {
-				if (browser.indexOf(mobileAgent[i])!=-1) {
-					isMobile = true;
-					location.href ='index_mob.html';
-					break;
+		<link rel="stylesheet" href="index/hw4.css">
+	</head>
+		
+	<script>
+		var commitPage = 1;
+		var commitState = -1;
+		function seeCommit(){
+			if(commitState == 1){
+				return;
+			}
+			if(commitState == -1){
+				commitState = 0;
+			}
+			$('#commitBtn').html("获取评论中");
+			$.ajax({url:"commit" + commitPage + ".json",async:true,success: function(data){
+				var toLoad = JSON.parse(data);
+				if(toLoad.commit.length == 0){
+					commitState = 1;
+					$('#commitBtn').html("没有更多评论");
+				}
+				else{
+					$('#commitBtn').html("查看更多评论");
+					for(var i = 0; i < toLoad.commit.length; i++){
+						$('<p class="commitText">'+toLoad.commit[i].text+'<span class="commitTextRight"><span class="commitUserName">'+toLoad.commit[i].name+'&nbsp&nbsp&nbsp</span>发表于'+toLoad.commit[i].date+'</span></p>').appendTo($('#commit_text'));
+					}
+					commitPage++;	
+				}
+			}});
+		}
+
+		var Modal_isOn = 0;
+		document.addEventListener('keyup',function(e){
+			if(Modal_isOn == 1 && e.keyCode == 27)
+			{
+				$('body').css("overflow","auto");
+				$('#Modal_divs_bg').css("display","none");
+				Modal_isOn = 0;
+			}
+		});
+
+		var isLoading = 0;
+
+		var longitude = 0;
+		var latitude = -1;
+		var isStarted = 0;
+
+
+		var wid = 0;
+		var fixedNum = 0; 
+		var columnNum = 0;
+		var finishedNum = 0;
+		var lengthOfColumn = new Array;
+		
+		var nowFileIndex = 1, isFinished = 0;
+
+		function checkIsStarted(){
+			if(isStarted == 0){
+				start();
+			}
+		}
+
+		function showCommit(d){
+			Modal_isOn = 1;
+			commitPage = 1;
+			commitState = -1;
+			$($('#commitPicture')[0]).attr("src",$(d).children("img").attr("src"));
+			$('#Modal_divs_bg').css("display","block");
+			$('#commit_text').html("");
+			$('#commitBtn').html("查看评论");
+			$('body').css("overflow","hidden");
+		}
+
+		$(function(){
+			setTimeout(checkIsStarted, 10000);
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(function(pos){
+						latitude = pos.coords.latitude;
+						longitude = pos.coords.longitude;
+						start();
+					}, function(err){
+						start();
+						switch(err.code) {
+			        case err.TIMEOUT:
+			            console.log("A timeout occured! Please try again!");
+			            break;
+			        case err.POSITION_UNAVAILABLE:
+			            console.log('We can\'t detect your location. Sorry!');
+			            break;
+			        case err.PERMISSION_DENIED:
+			            console.log('Please allow geolocation access for this to work.');
+			            break;
+			        case err.UNKNOWN_ERROR:
+			            console.log('An unknown error occured!');
+			            break;
+			    }
+					},{
+        		enableHighAcuracy: false,
+        		timeout: 10000,
+        		maximumAge: 600000
+				  });
+			}
+			else{
+				alert("您的浏览器不支持定位！");
+			}
+		});
+		
+		function getMaxLength(){
+			var maxLength = 0;
+			for(var i = 0; i < columnNum; i++){
+				if(maxLength < lengthOfColumn[i]){
+					maxLength = lengthOfColumn[i];
 				}
 			}
-			//location.href = "www.baidu.com";
-		</script>
-	</head>
-	<body>
+			return maxLength;
+		}
+
+		$(window).resize(function(){
+			wid = $(document.body).width();
+			if(wid > 1040)
+				wid = 1040;
+			var newColumnNum = parseInt(wid/250);
+			if(newColumnNum != columnNum){
+				for(var i = 0; i < columnNum; i++)
+					lengthOfColumn[i] = 0;
+				if(newColumnNum > lengthOfColumn.length)
+					for(var i = columnNum; i < newColumnNum; i++){
+						lengthOfColumn.push(0);
+					}
+				columnNum = newColumnNum;
+				fixedNum = 0;
+				fix();
+			}
+		});
+
+		function fixObj(obj){
+			var opt = $(obj).parent();
+			var minLength = lengthOfColumn[0];
+			var minPos = 0;
+			for(var j = 1; j < columnNum; j++){
+				if(lengthOfColumn[j] < minLength){
+					minLength = lengthOfColumn[j];
+					minPos = j;
+				}
+			}
+			$(opt).css("left", (5 + 250 * minPos).toString());
+			$(opt).css("top", (minLength + 55).toString());
+			lengthOfColumn[minPos] += (5 + parseInt($(opt).css("height")));
+			fixedNum++;
+			$('#foot').css("top",getMaxLength() + 300 + "px");
+		}
+
+		function fix(){
+			
+			var s;
+			for(var i = 0; i < columnNum; i++){
+				s += (" "+lengthOfColumn[i]);
+			}
+			var arr = $('#pic').children();
+			for(var i = fixedNum; i < arr.length; i++){
+				var minLength = lengthOfColumn[0];
+				var minPos = 0;
+				for(var j = 1; j < columnNum; j++){
+					if(lengthOfColumn[j] < minLength){
+						minLength = lengthOfColumn[j];
+						minPos = j;
+					}
+				}
+				$(arr[i]).css("left", (5 + 250 * minPos).toString());
+				$(arr[i]).css("top", (minLength + 55).toString());
+				lengthOfColumn[minPos] += (5 + parseInt($(arr[i]).css("height")));
+			}
+			fixedNum = arr.length;
+			$('#foot').css("top",getMaxLength() + 300 + "px");
+		}
+
+		fix();
+		$('#foot').css("top",getMaxLength() + 300 + "px");
+
+		function calcDist(lng1, lat1){
+			var pi = 3.141592654;
+			var cos = Math.cos;var sin = Math.sin;var arccos = Math.acos;
+			return 6370.996*arccos(cos(lat1*pi/180 )*cos(latitude*pi/180)*cos(lng1*pi/180 -longitude*pi/180)+
+				sin(lat1*pi/180 )*sin(latitude*pi/180));
+		}
+
+		function loadNext(){
+			if(isFinished == 0){
+				$.ajax({url:nowFileIndex + ".json",async:true,success: function(data){
+					console.log(data);
+					var toLoad = JSON.parse(data);
+					if(toLoad.pic.length == 0){
+						isFinished = 1;
+						$('#footText').html("没有更多图片");
+					}
+					else{
+						nowFileIndex++;
+						for(var i = 0; i < toLoad.pic.length; i++){
+							var oldHTML = ('<div class="card" onclick="showCommit(this)"><img src="'+toLoad.pic[i].url+'" alt="图片加载中..." class="innerImg" onload="fixObj(this);" onerror="javascipt:console.log(this.src.substring(this.src.length - 9));if(this.src.substring(this.src.length - 9) != \'error.png\'){this.alt=\'图片加载失败T_T\';this.src=\'error.png\';}else{this.style.display=\'none\';($(this).parent()).children()[2].innerHTML=(\'图片加载失败\');($(this).parent()).children()[1].innerHTML=(\'\');fixObj(this);}"><p><span class="commitTextRight">点击看原图</span></p><p style="font-size:14px">');
+							 if(latitude != -1){
+								var newPicLongitude = toLoad.pic[i].longitude;
+								var newPicLatitude = toLoad.pic[i].latitude;
+								var distance = parseInt(calcDist(newPicLongitude,newPicLatitude));
+								oldHTML += ('这张图距离你<span style="color:#4ac;font-size:10px">' + distance + '</span>千米');	
+							}
+							else{
+								oldHTML += '定位不支持';
+							}
+							oldHTML += '</p></div>';
+							var t = $(oldHTML);
+							t.children()[0].addEventListener("onload",function(){fixObj(this);});
+							t.appendTo($('#pic'));
+						}
+						$('#foot').css("top",getMaxLength() + 300 + "px");
+						isLoading = 0;
+					}
+				}});
+				
+			}
+		}
+
+		function start(){
+			if(isStarted == 0){
+				isStarted = 1;
+				wid = $(document.body).width();
+				if(wid > 1040)
+					wid = 1040;
+				columnNum = parseInt(wid/250);
+				for(var i = 0; i < columnNum; i++){
+					lengthOfColumn.push(0);
+				}
+				loadNext();
+			}
+		}
+
+		
+		$(window).bind('scroll', function(){
+			var scrollTop = $(window).scrollTop();
+　　		var scrollHeight = $(document).height();
+　　		var windowHeight = $(window).height();
+			if(isLoading == 0){
+				if(scrollTop + windowHeight + 100 >= scrollHeight){
+　　　　			isLoading = 1;
+					setTimeout(loadNext, 200);
+　　			}
+			}
+		});
+
+	</script>
+	<body class="hw4body">
+		<div id="Modal_divs_bg">
+			<div class="commitMainDiv">
+				<p class="commitHeadText">按下ESC键退出</p>
+				<img id="commitPicture" src="Http://localhost/img/ir/2.jpg" alt="图片加载中" onerror="javascipt:this.alt='图片加载失败T_T';this.src=''" style="max-width:98%;min-width:50%">
+				<div style="text-align:center;margin:auto">
+					<div id="commit_text" style="text-align:left;margin:auto">
+					</div>
+					<button id = "commitBtn" class="seeCommitBtn" onclick="javascript:seeCommit()">查看评论</button>
+				</div>
+			</div>
+		</div>
 		<div id="navi">
-			<a href="index.html"></a>
+			<a href="index.html" class="logoBox"></a>
 			<a href="intro.html" class="naviHref noUnderlineCCC">自我介绍</a>
 			<a href="hw.html" class="naviHref noUnderlineCCC">前端展示</a>
 			<a href="blog.html" class="naviHref noUnderlineCCC">个人日志</a>
 		</div>
-		<div id="mainDiv">
-			<div id="mainContent">
-				<div id="welcomeText">
-					<h1 id="h1Shadow">Welcome to my page!</h1>
-				</div>
-				<div id="indexImage">
-					<img src="image/1.png" alt="photo.png" width="300px" height="300px">
-				</div>
-				<!--
-				<div id="menu">
-					<ul>
-						<li id="intro"><a href="intro.html">个人介绍</a></li>
-						<li id="hw"><a href="hw.html">前端展示</a></li>
-						<li id="blog"><a href="log.html">个人日志</a></li>
-					</ul>
-				</div>
-				-->
+	
+		<div id="content" class="hw4Content">
+			<div id="pic" style="position:relative;margin:auto">
 			</div>
+			<div id="foot" class="footDiv">
+				<p id="footText" class="footP" >加载中......</p>
+				<br></br>
+				<br></br>
+				<br></br>
+			</div>
+		
 		</div>
-
 	</body>
+	
 </html>

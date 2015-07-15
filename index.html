@@ -200,7 +200,7 @@
 					else{
 						nowFileIndex++;
 						for(var i = 0; i < toLoad.pic.length; i++){
-							var oldHTML = ('<div class="card" onclick="showCommit(this)"><img src="'+toLoad.pic[i].url+'" alt="图片加载中..." class="innerImg" onload="fixObj(this);" onerror="javascipt:console.log(this.src.substring(this.src.length - 9));if(this.src.substring(this.src.length - 9) != \'error.png\'){this.alt=\'图片加载失败T_T\';this.src=\'error.png\';}else{this.style.display=\'none\';($(this).parent()).children()[2].innerHTML=(\'图片加载失败\');($(this).parent()).children()[1].innerHTML=(\'\');fixObj(this);}"><p><span class="commitTextRight">点击看原图</span></p><p style="font-size:14px">');
+							var oldHTML = ('<div class="card" onclick="showCommit(this)" style="left:-500px"><img src="'+toLoad.pic[i].url+'" alt="图片加载中..." class="innerImg" onload="fixObj(this);" onerror="javascipt:console.log(this.src.substring(this.src.length - 9));if(this.src.substring(this.src.length - 9) != \'error.png\'){this.alt=\'图片加载失败T_T\';this.src=\'error.png\';}else{this.style.display=\'none\';($(this).parent()).children()[2].innerHTML=(\'图片加载失败\');($(this).parent()).children()[1].innerHTML=(\'\');fixObj(this);}"><p><span class="commitTextRight">点击看原图</span></p><p style="font-size:14px">');
 							 if(latitude != -1){
 								var newPicLongitude = toLoad.pic[i].longitude;
 								var newPicLatitude = toLoad.pic[i].latitude;

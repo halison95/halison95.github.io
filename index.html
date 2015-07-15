@@ -61,12 +61,7 @@
 				start();
 			}
 		}
-		setTimeout(function(){
-			if(picLoading == 1){
-				$('#esc').html($('esc').html() + '.');
-				setTimeout(arguments.callee,500);
-			}
-		},500);
+
 		function showCommit(d){
 			Modal_isOn = 1;
 			commitPage = 1;
@@ -77,6 +72,12 @@
 			$('#commit_text').html("");
 			$('#esc').html("图片加载中，请耐心等待");
 			$('body').css("overflow","hidden");
+			setTimeout(function(){
+			if(picLoading == 1){
+				$('#esc').html($('esc').html() + '.');
+				setTimeout(arguments.callee,500);
+			}
+		},400);
 		}
 		$(function(){
 			setTimeout(checkIsStarted, 10000);

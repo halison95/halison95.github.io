@@ -68,7 +68,7 @@
 			Modal_isOn = 1;
 			commitPage = 1;
 			commitState = -1;
-			$($('#commitPicture')[0]).attr("src",$(d).children("img").attr("src"));
+			$($('#commitPicture')[0]).attr("src",$(d).children("img").attr("src").substring(3));
 			$('#Modal_divs_bg').css("display","block");
 			$('#commit_text').html("");
 			$('#commitBtn').html("查看评论");

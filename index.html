@@ -32,7 +32,6 @@
 				}
 			}});
 		}
-
 		var Modal_isOn = 0;
 		document.addEventListener('keyup',function(e){
 			if(Modal_isOn == 1 && e.keyCode == 27)
@@ -42,14 +41,10 @@
 				Modal_isOn = 0;
 			}
 		});
-
 		var isLoading = 0;
-
 		var longitude = 0;
 		var latitude = -1;
 		var isStarted = 0;
-
-
 		var wid = 0;
 		var fixedNum = 0; 
 		var columnNum = 0;
@@ -57,13 +52,11 @@
 		var lengthOfColumn = new Array;
 		
 		var nowFileIndex = 1, isFinished = 0;
-
 		function checkIsStarted(){
 			if(isStarted == 0){
 				start();
 			}
 		}
-
 		function showCommit(d){
 			Modal_isOn = 1;
 			commitPage = 1;
@@ -74,7 +67,6 @@
 			$('#commitBtn').html("查看评论");
 			$('body').css("overflow","hidden");
 		}
-
 		$(function(){
 			setTimeout(checkIsStarted, 10000);
 			if(navigator.geolocation){
@@ -118,7 +110,6 @@
 			}
 			return maxLength;
 		}
-
 		$(window).resize(function(){
 			wid = $(document.body).width();
 			if(wid > 1040)
@@ -136,7 +127,6 @@
 				fix();
 			}
 		});
-
 		function fixObj(obj){
 			var opt = $(obj).parent();
 			var minLength = lengthOfColumn[0];
@@ -153,7 +143,6 @@
 			fixedNum++;
 			$('#foot').css("top",getMaxLength() + 300 + "px");
 		}
-
 		function fix(){
 			
 			var s;
@@ -177,21 +166,17 @@
 			fixedNum = arr.length;
 			$('#foot').css("top",getMaxLength() + 300 + "px");
 		}
-
 		fix();
 		$('#foot').css("top",getMaxLength() + 300 + "px");
-
 		function calcDist(lng1, lat1){
 			var pi = 3.141592654;
 			var cos = Math.cos;var sin = Math.sin;var arccos = Math.acos;
 			return 6370.996*arccos(cos(lat1*pi/180 )*cos(latitude*pi/180)*cos(lng1*pi/180 -longitude*pi/180)+
 				sin(lat1*pi/180 )*sin(latitude*pi/180));
 		}
-
 		function loadNext(){
 			if(isFinished == 0){
 				$.ajax({url:nowFileIndex + ".json",async:true,success: function(data){
-					console.log(data);
 					var toLoad = JSON.parse(data);
 					if(toLoad.pic.length == 0){
 						isFinished = 1;
@@ -212,7 +197,6 @@
 							}
 							oldHTML += '</p></div>';
 							var t = $(oldHTML);
-							t.children()[0].addEventListener("onload",function(){fixObj(this);});
 							t.appendTo($('#pic'));
 						}
 						$('#foot').css("top",getMaxLength() + 300 + "px");
@@ -222,7 +206,6 @@
 				
 			}
 		}
-
 		function start(){
 			if(isStarted == 0){
 				isStarted = 1;
@@ -236,7 +219,6 @@
 				loadNext();
 			}
 		}
-
 		
 		$(window).bind('scroll', function(){
 			var scrollTop = $(window).scrollTop();
@@ -249,7 +231,6 @@
 　　			}
 			}
 		});
-
 	</script>
 	<body class="hw4body">
 		<div id="Modal_divs_bg">

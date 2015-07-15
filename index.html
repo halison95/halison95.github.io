@@ -13,6 +13,27 @@
 		var picLoading = 0;
 		var commitPage = 1;
 		var commitState = -1;
+		function seeCommitLast(){
+			if(commitPage == 1){
+				$('#commitBtnLast').html("评论最前端");
+				commitPage = 2;
+				commitState = 0;
+				return;
+			}
+			commitState = 0;
+			$('#commitBtnLast').html("获取评论中");
+			commitPage--;
+			$.ajax({url:"commit" + commitPage + ".json",async:true,success: function(data){
+				var toLoad = JSON.parse(data);
+					$('#commit_text').html("");
+					$('#commitBtnLast').html("查看上一页");
+					$('#commitBtn').html("查看下一页");
+					for(var i = 0; i < toLoad.commit.length; i++){
+						$('<p class="commitText">'+toLoad.commit[i].text+'<span class="commitTextRight"><span class="commitUserName">'+toLoad.commit[i].name+'&nbsp&nbsp&nbsp</span>发表于'+toLoad.commit[i].date+'</span></p>').appendTo($('#commit_text'));
+				
+				}
+			}});
+		}
 		function seeCommit(){
 			if(commitState == 1){
 				return;
@@ -26,9 +47,12 @@
 				if(toLoad.commit.length == 0){
 					commitState = 1;
 					$('#commitBtn').html("没有更多评论");
+					commitPage--;
 				}
 				else{
-					$('#commitBtn').html("查看更多评论");
+					$('#commit_text').html("");
+					$('#commitBtn').html("查看下一页");
+					$('#commitBtnLast').html("查看上一页");
 					for(var i = 0; i < toLoad.commit.length; i++){
 						$('<p class="commitText">'+toLoad.commit[i].text+'<span class="commitTextRight"><span class="commitUserName">'+toLoad.commit[i].name+'&nbsp&nbsp&nbsp</span>发表于'+toLoad.commit[i].date+'</span></p>').appendTo($('#commit_text'));
 					}
@@ -70,6 +94,7 @@
 			$($('#commitPicture')[0]).attr("src",$(d).children("img").attr("src").substring(3));
 			$('#Modal_divs_bg').css("display","block");
 			$('#commit_text').html("");
+			$('#commitBtn').html("查看评论");
 			$('#esc').html("图片加载中，请耐心等待");
 			$('body').css("overflow","hidden");
 			setTimeout(function(){
@@ -252,6 +277,7 @@
 				<div style="text-align:center;margin:auto">
 					<div id="commit_text" style="text-align:left;margin:auto">
 					</div>
+					<button id = "commitBtnLast" class="seeCommitBtn" onclick="javascript:seeCommitLast()">评论最前端</button>
 					<button id = "commitBtn" class="seeCommitBtn" onclick="javascript:seeCommit()">查看评论</button>
 				</div>
 			</div>

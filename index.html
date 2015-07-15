@@ -10,6 +10,7 @@
 	</head>
 		
 	<script>
+		var picLoading = 0;
 		var commitPage = 1;
 		var commitState = -1;
 		function seeCommit(){
@@ -60,14 +61,21 @@
 				start();
 			}
 		}
+		setTimeout(function(){
+			if(picLoading == 1){
+				$('#esc').html($('esc').html() + '.');
+				setTimeout(arguments.callee,500);
+			}
+		},500);
 		function showCommit(d){
 			Modal_isOn = 1;
 			commitPage = 1;
 			commitState = -1;
+			picLoading = 1;
 			$($('#commitPicture')[0]).attr("src",$(d).children("img").attr("src").substring(3));
 			$('#Modal_divs_bg').css("display","block");
 			$('#commit_text').html("");
-			$('#esc').html("图片加载");
+			$('#esc').html("图片加载中，请耐心等待");
 			$('body').css("overflow","hidden");
 		}
 		$(function(){
@@ -239,7 +247,7 @@
 		<div id="Modal_divs_bg">
 			<div class="commitMainDiv">
 				<p class="commitHeadText" id="esc">加载中</p>
-				<img id="commitPicture" src="Http://localhost/img/ir/2.jpg" alt="图片加载中..." onload="document.getElementById('esc').innerHTML='按ESC键退出'" onerror="javascipt:this.alt='图片加载失败T_T'" style="max-width:98%;min-width:50%">
+				<img id="commitPicture" src="Http://localhost/img/ir/2.jpg" alt="图片加载中..." onload="picLoading = 0;document.getElementById('esc').innerHTML='按ESC键退出'" onerror="javascipt:this.alt='图片加载失败T_T'" style="max-width:98%;min-width:50%">
 				<div style="text-align:center;margin:auto">
 					<div id="commit_text" style="text-align:left;margin:auto">
 					</div>

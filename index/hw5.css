@@ -1,0 +1,34 @@
+.input-text
+{
+    height:30px;margin:10px;width:96%;border: 1px solid #C3CED9; border-radius: 5px 5px 5px 5px; font-size: 14px; height: 31px; line-height: 31px;  margin-right: 10px; padding: 0; 
+}
+.img{
+	border:1px solid #eee;
+}
+#Modal_divs_bg{
+    background:rgba(255,255,255,0.7);height:100%;width:100%;position:fixed;top:0;z-Index:999997;text-align:center
+}
+.leftSection{
+    float:left;width:70%;height:100%
+}
+#msgList{
+    background:#fff;margin:10px;border:1px solid #000;border-radius:5px;height:450px;overflow-y:auto;overflow-x:hidden;
+}
+#showSection{
+    height:85%;text-align:left
+}
+#addEm{
+    margin:30px 20px 20px;float:left;color:#4ac;font-size:15px;
+}
+#send{
+    margin:20px;float:right;background:#eee;height:40px;width:140px;border-radius:5px
+}
+#popup{
+    height:65px;width:360px;z-index:5;background:#fff;margin:-20px 20px 0;display:none;border:1px solid #999
+}
+.rightSection{
+    float:right;width:30%;height:100%
+}
+#userListDiv{
+    text-align:left;background:#fff;margin:10px;border:1px solid #000;border-radius:5px;height:428px;overflow:auto
+}

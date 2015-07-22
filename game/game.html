@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="css/base.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<title>Document</title>
+
+</head>
+
+<body style="text-align:center">
+	<div id="left"></div>
+	<div id="right">
+		<div style="z-index:210">
+			<canvas id="overViewCanvas" width="200" height="150"></canvas>
+			<p id="timeShow">dfdf</p>
+			<p id="task">dfdf</p>
+		</div>
+	</div>
+
+	<div style="position:fixed;left:150px;top:20px;width:800px;height:600px;">
+		<img id="fail" src="img/fail.png" alt="fail">
+		<canvas id="mainCanvas" width="800" height="600">您的浏览器不支持HTML5！</canvas>	
+		<img id="title" src="img/title.png" alt="title">
+		<img id="start" src="img/start.png" alt="start" onclick="javascript:pick();">
+		<img id="rule" src="img/rule.png" alt="rule" onclick="javascript:$('#help').css('display','block');">
+		
+		
+		<img id="s1" class="s_button" src="img/1.png" alt="s1" onclick="javascript:page1Start(1);">
+		<img id="s2" class="s_button" src="img/2.png" alt="s2" onclick="javascript:page1Start(2);">
+		<img id="s3" class="s_button" src="img/3.png" alt="s3" onclick="javascript:page1Start(3);">
+		<img id="s4" class="s_button" src="img/rand.png" alt="s4" onclick="javascript:page1Start(4);">
+		<img id="sr" class="s_button" src="img/live.png" alt="live" onclick="javascript:page1Start(0);">
+		<img id="sback" class="s_button" src="img/back.png" alt="back" onclick="javascript:unPick(0);">	
+		
+		<div id="help">
+			<div style="overflow:auto;height:340px;text-align:left">
+				<p>操纵你的球通过接触吃掉不同的球！</p>
+				<p>这里的球相互接触时，一般情况下半径大的球会吃掉半径小的球.</p>
+				<p>按上下左右箭头改变球的速度。如果同时按下空格可以加快速度改变。你所能做的就只有这些了！</p>
+				<p>在游戏过程中按下ESC键可以直接退出游戏。</p>
+				<p>球分为以下几种：</p>
+				<img src="img/green.png" alt="green"><p>绿球是你在游戏中的化身。善待它。</p>
+				<img src="img/blue.png" alt="blue"><p>蓝球暂时是受。你碰到他后会将他吃掉！</p>
+				<img src="img/red.png" alt="red"><p>红球暂时是攻，有能力完全吃掉你，但是他可以变成受。</p>
+				<img src="img/black.png" alt="black"><p>黑球很奇怪：无论你比他大还是比他小，他都会试图吃掉你。</p>
+				<img src="img/purple.png" alt="purple"><p>警告！千万不要触碰紫球。否则......</p>
+
+			</div>
+			<img src="img/back.png" alt="back" id="backToMain" onclick="javascript:$('#help').css('display','none');">
+		</div>
+	</div>
+
+	<script src="js/main.js"></script>
+	<script src="js/setStage.js"></script>
+
+</body>
+</html>

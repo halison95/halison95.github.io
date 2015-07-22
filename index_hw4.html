@@ -106,11 +106,10 @@
 		},400);
 		}
 		$(function(){
-			setTimeout(checkIsStarted, 20000);
+			setTimeout(checkIsStarted, 10000);
 			if(navigator.geolocation){
 				navigator.geolocation.getCurrentPosition(function(pos){
 						latitude = pos.coords.latitude;
-						alert(latitude);
 						longitude = pos.coords.longitude;
 						start();
 					}, function(err){
@@ -131,7 +130,7 @@
 			    }
 					},{
         		enableHighAcuracy: false,
-        		timeout: 20000,
+        		timeout: 10000,
         		maximumAge: 600000
 				  });
 			}

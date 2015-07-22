@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="index/jquery.min.js"></script>
+	<script src="index/firebase.js"></script>
+	<script src="index/idle.min.js"></script>
+	<link rel="stylesheet" href="index/index.css">
+    <link rel="stylesheet" href="index/hw5.css">
+	<title>聊天室</title>
+</head>
+<body style="text-align:center;min-width:550px" onclick="javascript:if(isIconOn == 1){isIconOn = 0;$('#popup').css('display','none');}">
+	<div id="navi">
+		<a href="index.html" class="logoBox"></a>
+		<a href="intro.html" class="naviHref noUnderlineCCC">自我介绍</a>
+		<a href="hw.html" class="naviHref noUnderlineCCC">前端展示</a>
+		<a href="blog.html" class="naviHref noUnderlineCCC">个人日志</a>
+	</div>
+    <!--开始的遮罩-->
+	<div id="Modal_divs_bg" style="">
+		<p id="connectText">正在连接</p>
+	</div>
+
+	<div class="hw5Main" style="height:580px;max-width:80%;margin:auto">
+		<div class="content" style="background-color:#f6f6f6;height:100%;min-height:90%">
+			<div class="leftSection">
+				<div id="showSection">
+					<div id="msgList">
+						<!-- 元素结构类似于：
+						<div style="margin-bottom:5px;float: left;">
+							<div style="padding: 3px 20px 0 15px;background: transparent url('comment_box_main.png') no-repeat;float: left;margin-bottom: 0px;width:400px">
+								<small style="font-size: 12px;color:#4ac">hahaha 17:05:04</small>
+								<p style="margin:0px;max-width:370px">就是这样的哈哈哈哈哈啊哈哈<img src="icon/i_f02.png" alt="bq">哈哈哈哈哈哈哈哈哈<img src="icon/i_f02.png" alt="bq">哈哈哈哈</p>
+							</div>
+							<div style="background: url('comment_box_bottom.png') no-repeat;width: 400px;height: 9px;clear:both"></div>
+						</div>-->
+					</div>
+					<input type="text" id="msgText" class="input-text"  maxlength = "50"></input>
+				</div>
+				<div>
+					<a id="addEm" href="javascript:isIconOn = 1;$('#popup').css('display','block');">加入表情</a>
+					<button id = "send">发送(Enter)</button>
+					<br style="clear:both"></br>
+				</div>
+				<div id="popup">
+					<div id="popupUpLine">
+						<!-- 类似于
+						<img src="icon/i_f02.png" class="img" alt="bq">
+					-->
+					</div>
+					<div id = "popupDownLine">
+						<!-- 类似于
+						<img src="icon/i_f02.png" class="img" alt="bq">
+					-->
+					
+					</div>
+				</div>
+			</div>
+			<div class="rightSection">
+				<div>
+					<p><big id="name">名字</big></p>
+					<small>聊天室在线：<span id="num">0</num></small>
+				</div>
+				<div id = "userListDiv">
+					<ul id="userList" style="list-style:none">
+					</ul>
+				</div>
+			</div>
+			<br style="clear:both"></br>
+		</div>
+	</div>
+</body>
+<script src="index/hw5.js"></script>
+</html>
